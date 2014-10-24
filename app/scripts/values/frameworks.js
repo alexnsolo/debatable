@@ -3,6 +3,13 @@
 angular.module('debatable').value('frameworks', 
 	[
       {
+        'key': 'firebase',
+        'title': 'Firebase',
+        'url': 'https://www.firebase.com/',
+        'description': 'A powerful API to store and sync data in realtime.',
+        'logo': 'firebase.png'
+      },
+      {
         'key': 'angular',
         'title': 'AngularJS',
         'url': 'https://angularjs.org/',
