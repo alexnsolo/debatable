@@ -1,0 +1,9 @@
+{
+  "firebase": "dazzling-heat-8138",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
