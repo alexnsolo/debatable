@@ -4,8 +4,8 @@ angular.module('debatable', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 
   .config(function ($routeProvider) {
     $routeProvider
       .when('/home', {
-        templateUrl: 'partials/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'partials/home.html',
+        controller: 'HomeCtrl'
       })
       .when('/about', {
         templateUrl: 'partials/about.html',

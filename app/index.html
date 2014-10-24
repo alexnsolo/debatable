@@ -27,24 +27,24 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container">
+    <div class="container" ng-controller="MainCtrl">
         <nav class="navbar navbar-static-top navbar-inverse">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <span class="glyphicon glyphicon-home"></span> Debatable
+                <a class="navbar-brand">
+                    <span class="glyphicon glyphicon-fire"></span> Debatable
                 </a>
             </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a ng-href="#/home">Home</a></li>
-                    <li><a ng-href="#/about">About</a></li>
-                </ul>
-            </div>
+            <ul class="nav navbar-nav">
+                <li><a ng-href="#/home">Home</a></li>
+                <li><a ng-href="#/about">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-show="!auth.user"><a href ng-click="login()">Login</a></li>
+                <li ng-show="auth.user"><p class="navbar-text">Welcome, {{auth.user.displayName}}</p></li>
+                <li ng-show="auth.user"><a href ng-click="logout()">Logout</a></li>
+            </ul>
         </nav>
-
         <div ng-view></div>
-
         <hr>
         <div class="footer">
             <p class="text-muted">Debatable &copy; 2014</p>
@@ -79,9 +79,12 @@
 
     <!-- build:js({app,.tmp}) scripts/main.js -->
     <script src="scripts/debatable.js"></script>
-    <script src="scripts/main/mainCtrl.js"></script>
-    <script src="scripts/main/aboutCtrl.js"></script>
-    <script src="scripts/main/frameworks.js"></script>
+    <script src="scripts/controllers/mainCtrl.js"></script>
+    <script src="scripts/controllers/homeCtrl.js"></script>
+    <script src="scripts/controllers/aboutCtrl.js"></script>
+    <script src="scripts/factory/authClient.js"></script>
+    <script src="scripts/values/frameworks.js"></script>
+    <script src="scripts/values/firebaseAddress.js"></script>
 
     <!-- inject:partials -->
     <!-- angular templates will be automaticaly converted in js and inserted here -->
