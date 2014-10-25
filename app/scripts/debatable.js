@@ -1,18 +1,19 @@
 'use strict';
 
-angular.module('debatable', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngRoute', 'firebase'])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/home', {
-        templateUrl: 'partials/home.html',
-        controller: 'HomeCtrl'
+angular.module('debatable', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'firebase', 'ui.bootstrap'])
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/home');
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl: 'partials/home.html'
       })
-      .when('/about', {
-        templateUrl: 'partials/about.html',
-        controller: 'AboutCtrl'
+      .state('about', {
+        url: '/about',
+        templateUrl: 'partials/about.html'
       })
-      .otherwise({
-        redirectTo: '/home'
+      .state('newDebate', {
+        url: '/newDebate',
+        templateUrl: 'partials/newDebate.html'
       });
-  })
-;
+  });

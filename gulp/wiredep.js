@@ -6,7 +6,7 @@ var gulp = require('gulp');
 gulp.task('wiredep', function () {
   var wiredep = require('wiredep').stream;
 
-  gulp.src('app/styles/*.scss')
+  gulp.src('app/styles/*.less')
     .pipe(wiredep({
         directory: 'app/bower_components'
     }))

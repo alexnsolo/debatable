@@ -1,10 +1,39 @@
-<div class="jumbotron text-center">
-  <h1>Debatable</h1>
-  <p>Argue about anything in a structured format.</p>
-  <iframe src="https://dazzling-heat-8138.firebaseapp.com/github-btn.html?user=civilframe&repo=debatable&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
-  &nbsp;
-  <iframe src="https://dazzling-heat-8138.firebaseapp.com/github-btn.html?user=civilframe&repo=debatable&type=watch" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
-</div>
+<div ng-controller="HomeCtrl" class="home">
+	<div class="jumbotron text-center">
+	  <h1>Debatable</h1>
+	  <p>Argue about anything, in a structured format.</p>
+	  <iframe src="https://dazzling-heat-8138.firebaseapp.com/github-btn.html?user=civilframe&repo=debatable&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
+	  &nbsp;
+	  <iframe src="https://dazzling-heat-8138.firebaseapp.com/github-btn.html?user=civilframe&repo=debatable&type=watch" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+	</div>
 
-<br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<div class="clearfix">
+		<input ng-model="searchText" placeholder="Search Debates" class="search-bar form-control pull-left" />
+		<button ng-click="newDebate()" ng-if="auth.user" type="button" class="btn btn-success pull-right">Start a Debate <i class="fa fa-plus"></i></button>
+	</div>
+
+	<div class="debate-list">
+			<div ng-repeat="debate in debates | filter:searchText | orderBy:status" class="debate panel panel-default">
+				<div class="panel-heading">
+					<b>Topic: </b>{{debate.topic}}
+				</div>
+				<div class="panel-body">
+					<p><b>Status:</b> {{debate.status}}</p>
+					<p><b>Time Limit:</b> {{debate.maxTime}} mins</p>
+					<p><b># of Judges:</b> {{debate.maxJudges}}</p>
+				</div>
+				<div class="panel-footer clearfix">
+					<div class="pull-left" ng-if="auth.user">
+						<div ng-if="isParticipating(debate)" class="text-muted">You are participating.</div>
+						<button ng-click="joinDebate(debate, 'For')" ng-if="canJoin(debate, 'For')" type="button" class="btn btn-sm btn-success">Argue For</button>
+						<button ng-click="joinDebate(debate, 'Against')" ng-if="canJoin(debate, 'Against')" type="button" class="btn btn-sm btn-danger">Argue Against</button>	
+						<button ng-click="joinDebate(debate, 'Judge')" ng-if="canJoin(debate, 'Judge')" type="button" class="btn btn-sm btn-primary">Judge</button>
+					</div>
+					<div class="pull-right">
+						<button ng-click="viewDebate(debate)" type="button" class="btn btn-sm btn-default">View</button>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>

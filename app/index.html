@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles/vendor.css">
 
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -35,8 +36,8 @@
                 </a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a ng-href="#/home">Home</a></li>
-                <li><a ng-href="#/about">About</a></li>
+                <li ui-sref-active="active"><a href ui-sref="home">Home</a></li>
+                <li ui-sref-active="active"><a href ui-sref="about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="!auth.user"><a href ng-click="login()">Login</a></li>
@@ -44,7 +45,8 @@
                 <li ng-show="auth.user"><a href ng-click="logout()">Logout</a></li>
             </ul>
         </nav>
-        <div ng-view></div>
+        <div ui-view></div>
+        <br/><br/><br/><br/><br/><br/>
         <hr>
         <div class="footer">
             <p class="text-muted">Debatable &copy; 2014</p>
@@ -69,19 +71,24 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
     <script src="bower_components/mockfirebase/dist/mockfirebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
     <!-- endbower -->
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
     <!-- endbuild -->
+
 
     <!-- build:js({app,.tmp}) scripts/main.js -->
     <script src="scripts/debatable.js"></script>
     <script src="scripts/controllers/mainCtrl.js"></script>
     <script src="scripts/controllers/homeCtrl.js"></script>
     <script src="scripts/controllers/aboutCtrl.js"></script>
+    <script src="scripts/controllers/newDebateCtrl.js"></script>
+    <script src="scripts/directives/focus.js"></script>
     <script src="scripts/factory/authClient.js"></script>
     <script src="scripts/values/frameworks.js"></script>
     <script src="scripts/values/firebaseAddress.js"></script>

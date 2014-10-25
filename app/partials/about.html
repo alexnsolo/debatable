@@ -1,19 +1,21 @@
-<br/><br/>
-<p>Debatable is a platform for structured yet casual debate. Opponents present arguments and rebuttals, while judges set bounties award arguments to either side. After the time limit expires, the win goes to the opponent with the most points. Face off against friends or strangers in this fast-paced argument engine.</p>
-<br/><br/><br/>
+<div ng-controller="AboutCtrl">
+  <br/><br/>
+  <p>Debatable is a platform for structured yet casual debate. Opponents present arguments and rebuttals, while judges set bounties award arguments to either side. After the time limit expires, the win goes to the opponent with the most points. Face off against friends or strangers in this fast-paced argument engine.</p>
+  <br/><br/><br/>
 
-<hr/>
-<p>Debatable uses the following technologies:</p>
-<br/>
-<div class="row">
-  <div class="col-sm-6 col-md-4" ng-repeat="framework in frameworks | orderBy:'rank'">
-    <div class="thumbnail">
-      <img class="pull-right" ng-src="images/{{framework.logo}}" alt="{{framework.title}}">
-      <div class="caption">
-        <h3>{{framework.title}}</h3>
-        <p>{{framework.description}}</p>
-        <p><a ng-href="{{framework.url}}">{{framework.url}}</a></p>
+  <hr/>
+  <p>Debatable uses the following technologies:</p>
+  <br/>
+  <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="framework in frameworks | orderBy:'rank'">
+      <div class="thumbnail">
+        <img class="pull-right" ng-src="images/{{framework.logo}}" alt="{{framework.title}}">
+        <div class="caption">
+          <h3>{{framework.title}}</h3>
+          <p>{{framework.description}}</p>
+          <p><a ng-href="{{framework.url}}">{{framework.url}}</a></p>
+        </div>
       </div>
     </div>
-  </div>
+  </div>  
 </div>  
