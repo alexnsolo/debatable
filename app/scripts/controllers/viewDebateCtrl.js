@@ -351,5 +351,9 @@ angular.module('debatable').controller('ViewDebateCtrl',
 		$scope.showBountiesWon = function() {
 			return $scope.debate.status !== 'Open';
 		};
+
+		$scope.debateIsOpen = function() {
+			return $scope.debate.status === 'Open';
+		};
 	}]
 );

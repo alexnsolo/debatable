@@ -7,7 +7,7 @@
 			<div class="clearfix debate-metadata">
 				<div class="pull-left">
 					<p><b>Status:</b> {{debate.status}}</p>
-					<p><b>Time Limit:</b> {{debate.maxTime}} mins</p>
+					<!-- <p><b>Time Limit:</b> {{debate.maxTime}} mins</p> -->
 					<p><b># of Judges:</b> {{debate.maxJudges}}</p>
 				</div>
 				<div class="pull-left">
@@ -31,6 +31,7 @@
 				</div>
 			</div>
 			<hr/>
+			<p class="text-muted" ng-show="debateIsOpen()"><i>The debate will start once 'For' and 'Against' positions are filled and there are a sufficient number of judges</i></p>
 			<div class="new-argument clearfix" ng-if="canStartArgument()">
 				<div class="new-argument-form" ng-show="newArgument">
 					<textarea ng-model="newArgument.text" placeholder="State your argument in 500 characters or less" class="form-control" rows="5" max="500"></textarea>

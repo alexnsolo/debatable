@@ -47,4 +47,16 @@ angular.module('debatable')
 		$scope.viewDebate = function(debate) {
 			$state.go('viewDebate', {debateId: debate.$id});
 		};
+
+		$scope.getDebateStatusLabel = function(debate) {
+			if (debate.status === 'Open') {
+				return 'label-primary';
+			}
+			else if (debate.status === 'In-Progress') {
+				return 'label-success';
+			}
+			else if (debate.status === 'Closed') {
+				return 'label-danger';
+			}
+		};
 	}]);

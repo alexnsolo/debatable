@@ -1,6 +1,6 @@
 <div ng-controller="HomeCtrl" class="home">
 	<div class="jumbotron text-center">
-	  <h1>Debatable</h1>
+	  <h1>Debatable<span class="label label-info alpha-tag">Alpha</span></h1>
 	  <p>Argue about anything, in a structured format.</p>
 	  <iframe src="https://dazzling-heat-8138.firebaseapp.com/github-btn.html?user=civilframe&repo=debatable&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
 	  &nbsp;
@@ -18,8 +18,8 @@
 					<b>Topic: </b>{{debate.topic}}
 				</div>
 				<div class="panel-body">
-					<p><b>Status:</b> {{debate.status}}</p>
-					<p><b>Time Limit:</b> {{debate.maxTime}} mins</p>
+					<p><b>Status:</b> <span class="label {{getDebateStatusLabel(debate)}}">{{debate.status}}</span></p>
+					<!-- <p><b>Time Limit:</b> {{debate.maxTime}} mins</p> -->
 					<p><b># of Judges:</b> {{debate.maxJudges}}</p>
 					<!-- <pre>{{debate | json}}</pre> -->
 				</div>
