@@ -1,0 +1,110 @@
+<div ng-controller="ViewDebateCtrl" class="view-debate">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2>Topic: <i>"{{debate.topic}}"</i></h2>
+		</div>
+		<div class="panel-body">
+			<div class="clearfix debate-metadata">
+				<div class="pull-left">
+					<p><b>Status:</b> {{debate.status}}</p>
+					<p><b>Time Limit:</b> {{debate.maxTime}} mins</p>
+					<p><b># of Judges:</b> {{debate.maxJudges}}</p>
+				</div>
+				<div class="pull-left">
+					<b>Participants</b><br/>
+					<ul>
+						<li ng-repeat="participant in debate.participants">
+							<span class="label {{getSideLabel(participant.user)}}">{{participant.type}}</span>
+							<span>{{participant.user.displayName}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="pull-left" ng-if="showBountiesWon()">
+					<b>Bounties Won</b>
+					<div>
+						<span class="label label-success bounty-text">{{bountiesAwarded.For}}</span>
+						<span class="label label-danger bounty-text">{{bountiesAwarded.Against}}</span>
+					</div>
+				</div>
+				<div class="pull-right">
+					<button ng-click="endDebate()" ng-if="canEndDebate()" type="button" class="btn btn-danger">End Debate</button>
+				</div>
+			</div>
+			<hr/>
+			<div class="new-argument clearfix" ng-if="canStartArgument()">
+				<div class="new-argument-form" ng-show="newArgument">
+					<textarea ng-model="newArgument.text" placeholder="State your argument in 500 characters or less" class="form-control" rows="5" max="500"></textarea>
+					<br/>
+					<div class="pull-right">
+						<button ng-click="createNewArgument(debate)" type="button" class="btn btn-success">Post</button>
+						<button ng-click="cancelNewArgument(debate)" type="button" class="btn btn-warning">Cancel</button>	
+					</div>
+				</div>
+				<button ng-click="startNewArgument(debate)" ng-hide="newArgument" type="button" class="btn btn-success pull-right">New Argument</button>
+			</div>
+			<br/>
+			<div class="debate-arguments">
+				<div ng-repeat="argument in debateArguments" class="debate-argument well">
+					<blockquote>
+						<p>
+							<i class="fa fa-check award-check" ng-show="isArgumentAwardedTo(argument, argument.user)"></i>
+							<b>Argument</b> by <span class="label {{getSideLabel(argument.user)}}">{{argument.user.displayName}}</span>
+							<i>"{{argument.text}}"</i>
+						</p>
+					</blockquote>
+					<blockquote class="debate-rebuttal" ng-show="argument.rebuttal">
+						<p>
+							<i class="fa fa-check award-check" ng-show="isArgumentAwardedTo(argument, argument.rebuttal.user)"></i>
+							<b>Rebuttal</b> by <span class="label {{getSideLabel(argument.rebuttal.user)}}">{{argument.rebuttal.user.displayName}}</span>
+							<i>"{{argument.rebuttal.text}}"</i>
+						</p>
+					</blockquote>
+					<div class="new-rebuttal clearfix" ng-if="canCreateRebuttal(argument)">
+						<div class="new-rebuttal-form" ng-show="newRebuttal(argument)">
+							<textarea ng-model="newRebuttal(argument).text" placeholder="State your rebuttal in 200 characters or less" class="form-control" rows="3" max="200"></textarea>
+							<br/><br/>
+							<div class="pull-right">
+								<button ng-click="createNewRebuttal(argument)" type="button" class="btn btn-success">Post</button>
+								<button ng-click="cancelNewRebuttal(argument)" type="button" class="btn btn-warning">Cancel</button>	
+							</div>
+						</div>
+						<button ng-click="startNewRebuttal(argument)" ng-hide="newRebuttal(argument)" type="button" class="btn btn-primary pull-right">Rebuttal</button>
+					</div>
+					<hr/>
+					<div class="argument-bounties" ng-show="argument.bounties">
+						<br/><b>Bounties</b>
+						<div ng-repeat="bounty in argument.bounties">
+							<span class="label label-info">{{bounty.value}}</span> {{bounty.user.displayName}} 
+						</div>
+					</div>
+					<div class="set-bounty clearfix" ng-if="canSetBounty(argument)">
+						<div class="new-bounty-form pull-right" ng-show="newBounty(argument)">
+							<input ng-model="newBounty(argument).value" type="number" class="form-control" min="0" max="{{getBountyAvailable()}}" step="10" />
+							<br/><br/>
+							<div class="pull-right">
+								<button ng-click="createNewBounty(argument)" ng-enabled="argument.newBounty.value > 0" type="button" class="btn btn-success">Add</button>
+								<button ng-click="cancelNewBounty(argument)" type="button" class="btn btn-warning">Cancel</button>	
+							</div>
+						</div>
+						<button ng-click="startNewBounty(argument)" ng-hide="newBounty(argument)" type="button" class="btn btn-primary pull-right">Add Bounty</button>
+					</div>
+					<div class="award-argument clearfix" ng-if="canAwardArgument(argument)">	
+						<div class="pull-right" ng-show="newAwardArgument(argument)">
+							<div class="btn-group">
+						        <label class="btn btn-success" ng-model="newAwardArgument(argument).value" btn-radio="'For'" uncheckable>For <i class="fa" ng-class="{'fa-check': newAwardArgument(argument).value=='For'}"></i></label>
+						        <label class="btn btn-danger" ng-model="newAwardArgument(argument).value" btn-radio="'Against'" uncheckable>Against <i class="fa" ng-class="{'fa-check': newAwardArgument(argument).value=='Against'}"></i></label>
+						    </div>
+							<br/><br/>
+							<div class="pull-right">
+								<button ng-click="submitAwardArgument(argument)" type="button" class="btn btn-success">Award</button>
+								<button ng-click="cancelAwardArgument(argument)" type="button" class="btn btn-warning">Cancel</button>	
+							</div>
+						</div>
+						<button ng-click="startAwardArgument(argument)" ng-hide="newAwardArgument(argument)" type="button" class="btn btn-success pull-right">Award Argument</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <pre>{{debate | json}}</pre> -->
+</div>

@@ -13,7 +13,11 @@ angular.module('debatable', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 
         templateUrl: 'partials/about.html'
       })
       .state('newDebate', {
-        url: '/newDebate',
+        url: '/debate/new',
         templateUrl: 'partials/newDebate.html'
+      })
+      .state('viewDebate', {
+        url: '/debate/:debateId/view',
+        templateUrl: 'partials/viewDebate.html'
       });
   });

@@ -15,9 +15,12 @@ angular.module('debatable')
 		$scope.participationType = 'For';
 
 		$scope.createDebate = function() {
-			var debates = new Firebase(firebaseAddress + '/debates');
+			var debatesRef = new Firebase(firebaseAddress + '/debates');
 			var newDebate = $scope.debate;
-			newDebate.participants.push({
+			var newDebateRef = debatesRef.push(newDebate);
+
+			var participantsRef = new Firebase(firebaseAddress + '/debates/' + newDebateRef.name() + '/participants');
+			participantsRef.push({
 				user: { 
 					uid: $scope.auth.user.uid,
 				 	displayName: $scope.auth.user.displayName 
@@ -25,7 +28,7 @@ angular.module('debatable')
 				type: $scope.participationType,
 				creator: true
 			});
-			debates.push(newDebate);
+
 			$state.go('home');
 		};
 	}]);

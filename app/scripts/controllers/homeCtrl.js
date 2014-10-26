@@ -2,8 +2,8 @@
 
 angular.module('debatable')
 	.controller('HomeCtrl', ['$scope', '$state', '$firebase', 'firebaseAddress', function($scope, $state, $firebase, firebaseAddress) {
-		var debatesSync = $firebase(new Firebase(firebaseAddress + '/debates'));
-  	  	$scope.debates = debatesSync.$asArray();
+		var debatesRef = $firebase(new Firebase(firebaseAddress + '/debates'));
+  	  	$scope.debates = debatesRef.$asArray();
 
 		$scope.newDebate = function() {
 			$state.go('newDebate');
@@ -29,5 +29,22 @@ angular.module('debatable')
 			else {
 				return _.isUndefined(_.findWhere(debate.participants, {type: participationType}));
 			}
+		};
+
+		$scope.joinDebate = function(debate, participationType) {
+			var participantsRef = new Firebase(firebaseAddress + '/debates/' + debate.$id + '/participants');
+			participantsRef.push({
+				user: { 
+					uid: $scope.auth.user.uid,
+				 	displayName: $scope.auth.user.displayName 
+				},
+				type: participationType
+			});
+
+			$scope.viewDebate(debate);
+		};
+
+		$scope.viewDebate = function(debate) {
+			$state.go('viewDebate', {debateId: debate.$id});
 		};
 	}]);

@@ -41,12 +41,60 @@
   .debate-list {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
     margin-top: 20px;
     margin-right: -20px;
 
     .debate {
-      width: 365px;
+      min-width: 365px;
+      max-width: 365px;
       margin-right: 20px;
+    }
+  }
+}
+
+.view-debate {
+  .debate-metadata {
+    > * {
+      margin-right: 60px;
+      &:last-child {
+         margin-right: 0;
+      }
+    }
+
+    .bounty-text {
+      display: inline-block;
+      font-size: 30px;
+      margin-top: 10px;
+    }
+  }
+
+  .debate-arguments {
+    .debate-argument {
+
+      .award-check {
+        color: green;
+        font-size: 30px;
+      }
+
+      .debate-rebuttal {
+        margin-left:50px;
+      }
+
+      .new-rebuttal {
+        margin-top: 20px;
+      }
+
+      .set-bounty {
+        margin-top: 20px;
+        .new-bounty-form {
+          width: 200px;
+        }
+      }
+
+      .award-argument {
+        margin-top: 20px;
+      }
     }
   }
 }
