@@ -1,0 +1,20 @@
+<div class="debate panel panel-default">
+	<div class="panel-heading">
+		<b>Topic: </b>{{debate.topic}}
+	</div>
+	<div class="panel-body">
+		<p><b>Status:</b> <span class="label {{statusLabel}}">{{debate.status}}</span></p>
+		<p><b># of Judges:</b> {{debate.maxJudges}}</p>
+	</div>
+	<div class="panel-footer clearfix">
+		<div class="pull-left" ng-if="$root.auth.user">
+			<div ng-if="isParticipating" class="text-muted">You are participating.</div>
+			<button ng-click="joinDebate('For')" ng-if="canJoinAsFor" type="button" class="btn btn-sm btn-success">Argue For</button>
+			<button ng-click="joinDebate('Against')" ng-if="canJoinAsAgainst" type="button" class="btn btn-sm btn-danger">Argue Against</button>	
+			<button ng-click="joinDebate('Judge')" ng-if="canJoinAsJudge" type="button" class="btn btn-sm btn-primary">Judge</button>
+		</div>
+		<div class="pull-right">
+			<button ng-click="viewDebate()" type="button" class="btn btn-sm btn-default">View</button>	
+		</div>
+	</div>
+</div>

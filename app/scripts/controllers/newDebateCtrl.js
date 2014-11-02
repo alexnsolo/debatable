@@ -2,8 +2,8 @@
 
 angular.module('debatable')
 	.controller('NewDebateCtrl', 
-	['$scope', 'firebaseAddress', '$state', 
-	function ($scope, firebaseAddress, $state) {
+	['$scope', '$rootScope', 'firebaseAddress', '$state', 
+	function ($scope, $rootScope, firebaseAddress, $state) {
 		$scope.debate = {
 			topic: '',
 			maxTime: 15,
@@ -22,8 +22,8 @@ angular.module('debatable')
 			var participantsRef = new Firebase(firebaseAddress + '/debates/' + newDebateRef.name() + '/participants');
 			participantsRef.push({
 				user: { 
-					uid: $scope.auth.user.uid,
-				 	displayName: $scope.auth.user.displayName 
+					uid: $rootScope.auth.user.uid,
+				 	displayName: $rootScope.auth.user.displayName 
 				},
 				type: $scope.participationType,
 				creator: true

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('debatable').controller('ViewDebateCtrl', 
-	['$scope', '$firebase', 'firebaseAddress', '$stateParams',
-	function ($scope, $firebase, firebaseAddress, $stateParams) {
+	['$scope', '$rootScope', '$firebase', 'firebaseAddress', '$stateParams',
+	function ($scope, $rootScope, $firebase, firebaseAddress, $stateParams) {
 		var debateRef = new Firebase(firebaseAddress + '/debates/' + $stateParams.debateId);
 		$scope.debate = $firebase(debateRef).$asObject();
 
@@ -47,8 +47,8 @@ angular.module('debatable').controller('ViewDebateCtrl',
 		$scope.createNewArgument = function() {
 			var newArgument = $scope.newArgument;
 			newArgument.user = { 
-				uid: $scope.auth.user.uid,
-			 	displayName: $scope.auth.user.displayName 
+				uid: $rootScope.auth.user.uid,
+			 	displayName: $rootScope.auth.user.displayName 
 			};	
 			newArgument.timestamp = Date.now();
 
@@ -77,8 +77,8 @@ angular.module('debatable').controller('ViewDebateCtrl',
 		$scope.createNewRebuttal = function(argument) {
 			var newRebuttal = rebuttals[argument.$id];
 			newRebuttal.user = { 
-				uid: $scope.auth.user.uid,
-			 	displayName: $scope.auth.user.displayName 
+				uid: $rootScope.auth.user.uid,
+			 	displayName: $rootScope.auth.user.displayName 
 			};	
 			newRebuttal.timestamp = Date.now();
 
@@ -109,8 +109,8 @@ angular.module('debatable').controller('ViewDebateCtrl',
 		$scope.createNewBounty = function(argument) {
 			var newBounty = bounties[argument.$id];
 			newBounty.user = { 
-				uid: $scope.auth.user.uid,
-			 	displayName: $scope.auth.user.displayName 
+				uid: $rootScope.auth.user.uid,
+			 	displayName: $rootScope.auth.user.displayName 
 			};	
 			newBounty.timestamp = Date.now();
 
@@ -123,7 +123,7 @@ angular.module('debatable').controller('ViewDebateCtrl',
 				var participant;
 				snapshot.forEach(function(childSnapshot) {
 				  	var childData = childSnapshot.val();
-				  	if (childData.user.uid === $scope.auth.user.uid) {
+				  	if (childData.user.uid === $rootScope.auth.user.uid) {
 						participantId = childSnapshot.name();
 						participant = childData;
 				  	}
@@ -242,12 +242,12 @@ angular.module('debatable').controller('ViewDebateCtrl',
 		};
 
 		$scope.getBountyAvailable = function() {
-			var participant = getParticipant($scope.auth.user);
+			var participant = getParticipant($rootScope.auth.user);
 			return participant.bountyAvailable;
 		};
 
 		$scope.canStartArgument = function() {
-			if (_.isNull($scope.auth.user)) {
+			if (_.isNull($rootScope.auth.user)) {
 				return false;
 			}
 
@@ -255,7 +255,7 @@ angular.module('debatable').controller('ViewDebateCtrl',
 				return false;
 			}
 
-			var participant = getParticipant($scope.auth.user);
+			var participant = getParticipant($rootScope.auth.user);
 			if (_.isUndefined(participant)) {
 				return false;
 			}
@@ -268,7 +268,7 @@ angular.module('debatable').controller('ViewDebateCtrl',
 		};
 
 		$scope.canCreateRebuttal = function(argument) {
-			if (_.isUndefined(argument) ||  _.isNull($scope.auth.user)) {
+			if (_.isUndefined(argument) ||  _.isNull($rootScope.auth.user)) {
 				return false;
 			}
 
@@ -277,7 +277,7 @@ angular.module('debatable').controller('ViewDebateCtrl',
 			}
 
 
-			var participant = getParticipant($scope.auth.user);
+			var participant = getParticipant($rootScope.auth.user);
 			if (_.isUndefined(participant)) {
 				return false;
 			}
@@ -286,11 +286,11 @@ angular.module('debatable').controller('ViewDebateCtrl',
 				return false;
 			}
 
-			return argument.user.uid !== $scope.auth.user.uid && _.isUndefined(argument.rebuttal);
+			return argument.user.uid !== $rootScope.auth.user.uid && _.isUndefined(argument.rebuttal);
 		};
 
 		$scope.canSetBounty = function(argument) {
-			if (_.isUndefined(argument) || _.isNull($scope.auth.user)) {
+			if (_.isUndefined(argument) || _.isNull($rootScope.auth.user)) {
 				return false;
 			}
 
@@ -298,7 +298,7 @@ angular.module('debatable').controller('ViewDebateCtrl',
 				return false;
 			}
 
-			var participant = getParticipant($scope.auth.user);
+			var participant = getParticipant($rootScope.auth.user);
 			if (_.isUndefined(participant)) {
 				return false;
 			}
@@ -307,7 +307,7 @@ angular.module('debatable').controller('ViewDebateCtrl',
 		};
 
 		$scope.canAwardArgument = function(argument) {
-			if (_.isUndefined(argument) ||  _.isNull($scope.auth.user)) {
+			if (_.isUndefined(argument) ||  _.isNull($rootScope.auth.user)) {
 				return false;
 			}
 
@@ -315,7 +315,7 @@ angular.module('debatable').controller('ViewDebateCtrl',
 				return false;
 			}
 
-			var participant = getParticipant($scope.auth.user);
+			var participant = getParticipant($rootScope.auth.user);
 			if (_.isUndefined(participant)) {
 				return false;
 			}
@@ -328,7 +328,7 @@ angular.module('debatable').controller('ViewDebateCtrl',
 		};
 
 		$scope.canEndDebate = function() {
-			if (_.isNull($scope.auth.user)) {
+			if (_.isNull($rootScope.auth.user)) {
 				return false;
 			}
 
@@ -336,7 +336,7 @@ angular.module('debatable').controller('ViewDebateCtrl',
 				return false;
 			}
 
-			var participant = getParticipant($scope.auth.user);
+			var participant = getParticipant($rootScope.auth.user);
 			if (_.isUndefined(participant)) {
 				return false;
 			}

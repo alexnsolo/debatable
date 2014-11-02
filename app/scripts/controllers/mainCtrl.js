@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('debatable')
-	.controller('MainCtrl', function($scope, $firebaseSimpleLogin, authClient) {
-  		$scope.auth = authClient;
+	.controller('MainCtrl', ['$scope', '$rootScope', '$firebaseSimpleLogin', 'authClient', function($scope, $rootScope, $firebaseSimpleLogin, authClient) {
+  		$rootScope.auth = authClient;
 
   		$scope.login = function() {
   			authClient.$login('github');
@@ -11,4 +11,4 @@ angular.module('debatable')
   		$scope.logout = function() {
   			authClient.$logout();
   		};
-	});
+	}]);
