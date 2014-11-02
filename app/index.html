@@ -1,105 +1,105 @@
 <!doctype html>
 <html class="no-js" ng-app="debatable">
   <head>
-    <meta charset="utf-8">
-    <title>Debatable</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<meta charset="utf-8">
+	<title>Debatable</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <!-- build:css({.tmp,app}) styles/vendor.css -->
-    <link rel="stylesheet" href="styles/vendor.css">
+	<!-- build:css({.tmp,app}) styles/vendor.css -->
+	<link rel="stylesheet" href="styles/vendor.css">
 
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
+	<!-- bower:css -->
+	<link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+	<!-- endbower -->
+	<!-- endbuild -->
 
-    <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+	<!-- build:css({.tmp,app}) styles/main.css -->
+	<link rel="stylesheet" href="styles/main.css">
+	<!-- endbuild -->
 
-    <!-- build:js scripts/modernizr.js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
+	<!-- build:js scripts/modernizr.js -->
+	<script src="bower_components/modernizr/modernizr.js"></script>
+	<!-- endbuild -->
   </head>
   <body>
-    <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+	<!--[if lt IE 10]>
+	  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
 
-    <div class="container" ng-controller="MainCtrl">
-        <nav class="navbar navbar-static-top navbar-inverse">
-            <div class="navbar-header">
-                <a class="navbar-brand">
-                    <span class="glyphicon glyphicon-fire"></span> Debatable
-                </a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li ui-sref-active="active"><a href ui-sref="home">Home</a></li>
-                <li ui-sref-active="active"><a href ui-sref="about">About</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-show="!auth.user"><a href ng-click="login()">Login</a></li>
-                <li ng-show="auth.user"><p class="navbar-text">Welcome, {{auth.user.displayName}}</p></li>
-                <li ng-show="auth.user"><a href ng-click="logout()">Logout</a></li>
-            </ul>
-        </nav>
-        <div ui-view></div>
-        <br/><br/><br/><br/><br/><br/>
-        <hr>
-        <div class="footer">
-            <p class="text-muted">Debatable &copy; 2014</p>
-        </div>
-    </div>
+	<div class="container" ng-controller="MainCtrl">
+		<nav class="navbar navbar-static-top navbar-inverse">
+			<div class="navbar-header">
+				<a class="navbar-brand">
+					<span class="glyphicon glyphicon-fire"></span> Debatable
+				</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li ui-sref-active="active"><a href ui-sref="home">Home</a></li>
+				<li ui-sref-active="active"><a href ui-sref="about">About</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li ng-show="!auth.user"><a href ng-click="login()">Login</a></li>
+				<li ng-show="auth.user"><p class="navbar-text">Welcome, {{auth.user.displayName}}</p></li>
+				<li ng-show="auth.user"><a href ng-click="logout()">Logout</a></li>
+			</ul>
+		</nav>
+		<div ui-view></div>
+		<br/><br/><br/><br/><br/><br/>
+		<hr>
+		<div class="footer">
+			<p class="text-muted">Debatable &copy; 2014</p>
+		</div>
+	</div>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-56060297-1', 'auto');
-      ga('send', 'pageview');
-    </script>
+	  ga('create', 'UA-56060297-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/firebase/firebase.js"></script>
-    <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
-    <script src="bower_components/mockfirebase/dist/mockfirebase.js"></script>
-    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/underscore/underscore.js"></script>
-    <!-- endbower -->
-    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
-    <!-- endbuild -->
+	<!-- build:js scripts/vendor.js -->
+	<!-- bower:js -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script src="bower_components/angular-touch/angular-touch.js"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script src="bower_components/firebase/firebase.js"></script>
+	<script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
+	<script src="bower_components/mockfirebase/dist/mockfirebase.js"></script>
+	<script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
+	<!-- endbower -->
+	<script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+	<!-- endbuild -->
 
 
-    <!-- build:js({app,.tmp}) scripts/main.js -->
-    <script src="scripts/debatable.js"></script>
-    <script src="scripts/components/debateListItem.js"></script>
-    <script src="scripts/controllers/mainCtrl.js"></script>
-    <script src="scripts/controllers/homeCtrl.js"></script>
-    <script src="scripts/controllers/aboutCtrl.js"></script>
-    <script src="scripts/controllers/newDebateCtrl.js"></script>
-    <script src="scripts/controllers/viewDebateCtrl.js"></script>
-    <script src="scripts/directives/focus.js"></script>
-    <script src="scripts/factory/authClient.js"></script>
-    <script src="scripts/values/frameworks.js"></script>
-    <script src="scripts/values/firebaseAddress.js"></script>
+	<!-- build:js({app,.tmp}) scripts/main.js -->
+	<script src="scripts/debatable.js"></script>
+	<script src="scripts/components/debateListItem.js"></script>
+	<script src="scripts/controllers/mainCtrl.js"></script>
+	<script src="scripts/controllers/homeCtrl.js"></script>
+	<script src="scripts/controllers/aboutCtrl.js"></script>
+	<script src="scripts/controllers/newDebateCtrl.js"></script>
+	<script src="scripts/controllers/viewDebateCtrl.js"></script>
+	<script src="scripts/directives/focus.js"></script>
+	<script src="scripts/factory/authClient.js"></script>
+	<script src="scripts/values/frameworks.js"></script>
+	<script src="scripts/values/firebaseAddress.js"></script>
 
-    <!-- inject:partials -->
-    <!-- angular templates will be automaticaly converted in js and inserted here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+	<!-- inject:partials -->
+	<!-- angular templates will be automaticaly converted in js and inserted here -->
+	<!-- endinject -->
+	<!-- endbuild -->
 
   </body>
 </html>

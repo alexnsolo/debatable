@@ -31,4 +31,5 @@ angular.module('debatable')
 
 			$state.go('home');
 		};
-	}]);
+	}]
+);

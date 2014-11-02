@@ -5,10 +5,6 @@
 			<label>Topic</label>
 			<input ng-model="debate.topic" class="form-control" type="text" required focus />
 		</div>
-		<!-- <div class="form-group col-lg-6">
-			<label>Time Limit (min)</label>
-			<input ng-model="debate.maxTime" class="form-control"  type="number" min="5" max="30" required />
-		</div> -->
 		<div class="form-group col-lg-6">
 			<label># of Judges</label>
 			<input ng-model="debate.maxJudges" class="form-control col-sm-6" type="number" min="1" max="5" required />
@@ -16,10 +12,10 @@
 		<div class="form-group col-lg-12">
 			<label>Participation&nbsp;</label>
 			<div class="btn-group">
-		        <label class="btn btn-success" ng-model="participationType" btn-radio="'For'" uncheckable>For <i class="fa" ng-class="{'fa-check': participationType=='For'}"></i></label>
-		        <label class="btn btn-danger" ng-model="participationType" btn-radio="'Against'" uncheckable>Against <i class="fa" ng-class="{'fa-check': participationType=='Against'}"></i></label>
-		         <label class="btn btn-primary" ng-model="participationType" btn-radio="'Judge'" uncheckable>Judge <i class="fa" ng-class="{'fa-check': participationType=='Judge'}"></i></label>
-		    </div>
+				<label class="btn btn-success" ng-model="participationType" btn-radio="'For'" uncheckable>For <i class="fa" ng-class="{'fa-check': participationType=='For'}"></i></label>
+				<label class="btn btn-danger" ng-model="participationType" btn-radio="'Against'" uncheckable>Against <i class="fa" ng-class="{'fa-check': participationType=='Against'}"></i></label>
+				<label class="btn btn-primary" ng-model="participationType" btn-radio="'Judge'" uncheckable>Judge <i class="fa" ng-class="{'fa-check': participationType=='Judge'}"></i></label>
+			</div>
 		</div>
 	</form>
 	<div class="clearfix">

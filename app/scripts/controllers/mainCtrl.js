@@ -11,4 +11,5 @@ angular.module('debatable')
   		$scope.logout = function() {
   			authClient.$logout();
   		};
-	}]);
+	}]
+);
